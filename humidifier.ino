@@ -62,6 +62,7 @@ void setup() {
   // Show initial display buffer contents on the screen --
   // the library initializes this with an Adafruit splash screen.
   display.display();
+  display.setTextColor(WHITE);
   delay(2000); // Pause for 2 seconds
 
   // Clear the buffer
