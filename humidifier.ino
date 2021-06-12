@@ -152,13 +152,13 @@ void displaySetup(int cursorPos) {
 
     display.setCursor(15,20);
     display.setTextSize(1);
-    display.println("33");
+    display.print("33");
     display.write(248);
     display.println("C");
 
     display.setCursor(15,30);
     display.setTextSize(1);
-    display.println("36");
+    display.print("36");
     display.write(248);
     display.println("C");
 
