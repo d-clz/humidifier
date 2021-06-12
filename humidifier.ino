@@ -1,5 +1,3 @@
-#include <SPI.h>
-#include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <OneButton.h>
@@ -40,6 +38,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 //   B00000000, B00110000 };
 
 boolean isWorking, isErr;
+int input = -2;
 
 
 void setup() {
@@ -72,7 +71,7 @@ void setup() {
 }
  void loop() {
      if (isWorking != true) {
-         input = button.tick();
+         button.tick();
          switch (input) {
              case 2:        //"DOUBLE_CLICK":
                 display.clearDisplay();
@@ -103,14 +102,18 @@ void setup() {
      }
  }
 
+ int returnState(int state){
+     return state;
+ }
+
  void doubleclick() {
+     input = 2;
      Serial.println("DOUBLE_CLICK");
-     return 2;
  }
 
  void singleclick() {
+     input = 0;
      Serial.println("SINGLE_CLICK");
-     return 0;
  }
 
  ISR(PCINT2_vect) {
@@ -118,12 +121,12 @@ void setup() {
    if (result == DIR_NONE) {
    }
    else if (result == DIR_CW) {
+     input = 1;
      Serial.println("CLOCKWISE");
-     return 1;
    }
    else if (result == DIR_CCW) {
+     input = -1;
      Serial.println("COUNTERCLOCK");
-     return -1;
    }
  }
 
