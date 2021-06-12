@@ -91,22 +91,25 @@ void setup() {
                 if (count !=3) {
                     count++;
                     displaySetup(count);
+                    break;
                 }
                 else{
                     count = 1;
                     displaySetup(count);
+                    break;
                 }
                 break;
              case -1:       //"COUNTERCLOCK":
                 if (count !=1) {
                     count--;
                     displaySetup(count);
+                    break;
                 }
                 else{
                     count = 3;
                     displaySetup(count);
+                    break;
                 }
-                break;
          }
      }
 
@@ -143,7 +146,7 @@ void setup() {
 void displaySetup(int cursorPos) {
     display.clearDisplay();
     display.setCursor(0,0);
-    display.setTextSize(2);
+    display.setTextSize(1);
     display.println("SELECT OUTPUT TEMP:");
 
     display.setCursor(10,20);
