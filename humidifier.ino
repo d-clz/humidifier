@@ -80,36 +80,37 @@ void setup() {
                 display.setCursor(10,3);
                 display.println("Double clicked");
                 display.display();
+                input = -2;
                 break;
              case 0:        //"SINGLE_CLICK":
                 display.clearDisplay();
                 display.setCursor(10,3);
                 display.println("Clicked");
                 display.display();
+                input = -2;
                 break;
              case 1:        //"CLOCKWISE":
                 if (count !=3) {
                     count++;
                     displaySetup(count);
-                    break;
                 }
                 else{
                     count = 1;
                     displaySetup(count);
-                    break;
                 }
+                input = -2;
                 break;
              case -1:       //"COUNTERCLOCK":
                 if (count !=1) {
                     count--;
                     displaySetup(count);
-                    break;
                 }
                 else{
                     count = 3;
                     displaySetup(count);
-                    break;
                 }
+                input = -2;
+                break;
          }
      }
 
@@ -149,21 +150,21 @@ void displaySetup(int cursorPos) {
     display.setTextSize(1);
     display.println("SELECT OUTPUT TEMP:");
 
-    display.setCursor(10,20);
+    display.setCursor(15,20);
     display.setTextSize(1);
     display.println("33");
     display.write(248);
     display.println("C");
 
-    display.setCursor(10,30);
+    display.setCursor(15,30);
     display.setTextSize(1);
     display.println("36");
     display.write(248);
     display.println("C");
 
-    display.setCursor(10,40);
+    display.setCursor(15 ,40);
     display.setTextSize(1);
-    display.println("39");
+    display.print("39");
     display.write(248);
     display.println("C");
 
