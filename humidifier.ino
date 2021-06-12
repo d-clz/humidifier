@@ -39,6 +39,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 boolean isWorking, isErr;
 int input = -2;
+int count = 1;
 
 
 void setup() {
@@ -78,21 +79,33 @@ void setup() {
                 display.clearDisplay();
                 display.setCursor(10,3);
                 display.println("Double clicked");
+                display.display();
                 break;
              case 0:        //"SINGLE_CLICK":
                 display.clearDisplay();
                 display.setCursor(10,3);
                 display.println("Clicked");
+                display.display();
                 break;
              case 1:        //"CLOCKWISE":
-                display.clearDisplay();
-                display.setCursor(10,3);
-                display.println("Rotated Clockwise");
+                if (count !=3) {
+                    count++;
+                    displaySetup(count);
+                }
+                else{
+                    count = 1;
+                    displaySetup(count);
+                }
                 break;
              case -1:       //"COUNTERCLOCK":
-                display.clearDisplay();
-                display.setCursor(10,3);
-                display.println("Rotated Counterclock");
+                if (count !=1) {
+                    count--;
+                    displaySetup(count);
+                }
+                else{
+                    count = 3;
+                    displaySetup(count);
+                }
                 break;
          }
      }
@@ -101,10 +114,6 @@ void setup() {
          // Disable all input from Rotary
          isWorking = false;
      }
- }
-
- int returnState(int state){
-     return state;
  }
 
  void doubleclick() {
@@ -131,8 +140,32 @@ void setup() {
    }
  }
 
-// void testRotatyInteract() {
-//     display.clearDisplay();
-//     display.setCursor(10, 0);
-//     display.println("Humidifier Setup");
-// }
+void displaySetup(int cursorPos) {
+    display.clearDisplay();
+    display.setCursor(0,0);
+    display.setTextSize(2);
+    display.println("SELECT OUTPUT TEMP:");
+
+    display.setCursor(10,20);
+    display.setTextSize(1);
+    display.println("33");
+    display.write(248);
+    display.println("C");
+
+    display.setCursor(10,30);
+    display.setTextSize(1);
+    display.println("36");
+    display.write(248);
+    display.println("C");
+
+    display.setCursor(10,40);
+    display.setTextSize(1);
+    display.println("39");
+    display.write(248);
+    display.println("C");
+
+    display.setCursor(2, (cursorPos*10)+10);
+    display.write(16);
+
+    display.display();
+}
