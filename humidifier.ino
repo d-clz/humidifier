@@ -80,14 +80,12 @@ void setup() {
                 display.setCursor(10,3);
                 display.println("Double clicked");
                 display.display();
-                input = -2;
                 break;
              case 0:        //"SINGLE_CLICK":
                 display.clearDisplay();
                 display.setCursor(10,3);
                 display.println("Clicked");
                 display.display();
-                input = -2;
                 break;
              case 1:        //"CLOCKWISE":
                 if (count !=3) {
@@ -98,7 +96,6 @@ void setup() {
                     count = 1;
                     displaySetup(count);
                 }
-                input = -2;
                 break;
              case -1:       //"COUNTERCLOCK":
                 if (count !=1) {
@@ -109,9 +106,9 @@ void setup() {
                     count = 3;
                     displaySetup(count);
                 }
-                input = -2;
                 break;
          }
+         input = -2;
      }
 
      else {
